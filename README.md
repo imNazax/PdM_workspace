@@ -1,4 +1,4 @@
-# Programación de Microcontroladores – Workspace STM32
+# Workspace STM32/CESE/FIUBA
 Repositorio con prácticas desarrolladas para la especialización sobre **Sistemas Embebidos**, de la Facultad de Ingeniería de la Universidad de Buenos Aires (FIUBA) utilizando una placa NUCLEO STM32 y el entorno STM32CubeIDE.
 
 El objetivo del repositorio es documentar y versionar los ejercicios realizados durante la cursada, incluyendo código fuente, configuraciones de proyecto y documentación básica de cada práctica.
