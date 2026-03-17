@@ -42,12 +42,12 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-const tick_t tiempos[] = {500, 100, 50};
+const tick_t tiempos[] = {500, 100, 50}; // Arreglo con los tres períodos de parpadeo en ms: lento, medio, rápido
 
-uint8_t indiceTiempo = 0;
-uint8_t contadorParpadeos = 0;
+uint8_t indiceTiempo = 0; 		// Índice actual en el arreglo tiempos[]
+uint8_t contadorParpadeos = 0; 	// Cuenta los toggles desde el último cambio de velocidad
 
-delay_t delayLed;
+delay_t delayLed;	// Estructura que maneja el temporizador no bloqueante del LED
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -80,7 +80,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+  HAL_Init(); 
 
   /* USER CODE BEGIN Init */
 
@@ -97,9 +97,9 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
-  delayInit(&delayLed, tiempos[indiceTiempo]);
+  delayInit(&delayLed, tiempos[indiceTiempo]); 	// Inicializa el delay con 500 ms (primer período)
 
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // Asegura que el LED empiece apagado
 
   /* USER CODE END 2 */
 
@@ -111,22 +111,22 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  if(delayRead(&delayLed))
+	  if(delayRead(&delayLed)) // ¿Pasaron los ms configurados? (no bloqueante)
 	  {
-	      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5); // Cambia el estado del LED (apagado <-> encendido)
 
-	      contadorParpadeos++;
+	      contadorParpadeos++;  		// Registra un toggle más
 
-	      if(contadorParpadeos >= 10)
+	      if(contadorParpadeos >= 10)  	// Cada 10 toggles -> cambiar velocidad
 	      {
-	          contadorParpadeos = 0;
-	          indiceTiempo++;
+	          contadorParpadeos = 0; 	// Reinicia el contador
+	          indiceTiempo++; 			// Avanza al siguiente período
 
-	          if(indiceTiempo >= 3)
+	          if(indiceTiempo >= 3)	 	// Si superó el último (50 ms), vuelve al primero	
 	              indiceTiempo = 0;
 	      }
 
-	      delayWrite(&delayLed, tiempos[indiceTiempo]);
+	      delayWrite(&delayLed, tiempos[indiceTiempo]); // Actualiza el período del temporizador
 	  }
 
   }
