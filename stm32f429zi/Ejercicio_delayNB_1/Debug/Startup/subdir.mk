@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (10.3-2021.10)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
@@ -16,7 +16,7 @@ S_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Startup/%.o: ../Startup/%.s Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Drivers/CMSIS/Include" -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Inc" -I"/home/pato/Embebidos/PdM/PdM_workspace/Ejercicio_delayNB_1/Drivers/Core/Inc" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Drivers/CMSIS/Include" -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Inc" -I"/home/nazax/Documentos/Workspace/STM32 Workspace/PdM_workspace/stm32f429zi/Ejercicio_delayNB_1/Drivers/Core/Inc" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
 clean: clean-Startup
 
