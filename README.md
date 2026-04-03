@@ -42,6 +42,6 @@ PdM_workspace
 . . .
 ```
 # Autor
-Pablo Nazareno Coronati (Nazax, imNazax).
+- Pablo Nazareno Coronati (Nazax, imNazax).
 # Licencia
-Este repositorio se utiliza con fines educativos.
+- Este repositorio se utiliza con fines educativos.
