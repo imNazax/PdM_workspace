@@ -19,7 +19,7 @@ Cada driver se divide en dos archivos según lo requerido por la cátedra de PCS
         ▼                                       │
   ┌──────────┐                                  │
   │   IDLE   │                                  │
-  │(Esperando)│                                  │
+  │(Esperando)│                                 │
   └────┬─────┘                                  │
        │ delayRead() == true                    │
        ▼                                        │
@@ -69,33 +69,31 @@ Driver de comunicación serie para reporte a PC.
 ```
 tp_final/
 ├── Core/
-│   ├── Inc/
-│   │   └── main.h                 ← Tipos MEF, includes, defines
-│   └── Src/
-│       ├── main.c                 ← MEF + while(1)
-│       ├── stm32f4xx_hal_msp.c    ← MSP init (generado por CubeMX)
-│       └── stm32f4xx_it.c         ← Interrupciones (SysTick)
+│ ├── Inc/main.h ← Tipos de la MEF, includes, #defines
+│ └── Src/main.c ← MEF + while(1) ("director de orquesta")
 │
-└── Drivers/
-    └── API/
-        ├── API_delay/
-        │   ├── inc/API_delay.h
-        │   └── src/API_delay.c
-        ├── DHT11/
-        │   ├── inc/dht11.h
-        │   └── src/
-        │       ├── dht11.c        ← Lógica genérica (sin HAL)
-        │       └── port.c         ← Hardware específico (con HAL)
-        ├── LCD_I2C/
-        │   ├── inc/lcd_i2c.h
-        │   └── src/
-        │       ├── lcd_i2c.c      ← Lógica genérica (sin HAL)
-        │       └── port.c         ← Hardware específico (con HAL)
-        └── UART/
-            ├── inc/uart.h
-            └── src/
-                ├── uart.c         ← Lógica genérica (sin HAL)
-                └── port.c         ← Hardware específico (con HAL)
+└── Drivers/API/
+├── API_delay/ ← Delay no bloqueante (reutilizado de prácticas anteriores)
+│ ├── inc/API_delay.h
+│ └── src/API_delay.c
+│
+├── DHT11/ ← Driver del sensor
+│ ├── inc/dht11.h ← Interfaz pública (solo tipos + prototipos)
+│ └── src/
+│ ├── dht11.c ← Protocolo 1-Wire (genérico)
+│ └── port.c ← GPIO + DWT del STM32 (toca HAL)
+│
+├── LCD_I2C/ ← Driver del display
+│ ├── inc/lcd_i2c.h ← Interfaz pública (solo tipos + prototipos)
+│ └── src/
+│ ├── lcd_i2c.c ← HD44780 modo 4 bits (genérico)
+│ └── port.c ← HAL_I2C_Master_Transmit (toca HAL)
+│
+└── UART/ ← Driver de comunicación serie
+├── inc/uart.h ← Interfaz pública (solo tipos + prototipos)
+└── src/
+├── uart.c ← Formateo de mensajes (genérico)
+└── port.c ← HAL_UART_Transmit (toca HAL)
 ```
 ## Buenas prácticas aplicadas
 - **Delays no bloqueantes** en vez de `HAL_Delay()` para mantener el micro responsivo.
@@ -112,5 +110,6 @@ tp_final/
 - **IDE:** STM32CubeIDE
 - **Lenguaje:** C
 - **Terminal serie:** Picocom (115200 baud)
+> Utilizar el comando: 'picocom -b 115200 /dev/ttyACM0' para que la UART mande mensaje a la PC en la terminal.
 ## Autor
 Pablo Nazareno Coronati — CESE FIUBA
